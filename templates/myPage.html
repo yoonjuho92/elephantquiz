@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center">
+  <h4 class="mt-5 mb-4">내가 읽은 글들</h4>
+  <div class="card-group mb-5">
+  {% if not userTextSet %}
+  <div class="container text-center">
+    <h5>아직 읽은 글이 없어요!</h5>
+  </div>
+  {% endif %}
+  {% for userText in userTextSet %}
+    <a href="{% url 'quiz' userText.id %}" class="text-decoration-none link-dark">
+    <div class="card mx-2" style="width: 18rem;">
+      <img class="card-img-top border border-success text-decoration-none" src="/static/image/sitting.png" alt="Card image cap">
+      <div class="card-body">
+        <div class="card-title text-center">{{ userText.subject }}</div>
+        <p class="card-text">{{ userText.content|slice:":30" }}...</p>
+      </div>
+    </div>
+    </a>
+{% endfor %}
+  </div>
+</div>
+{% endblock %}

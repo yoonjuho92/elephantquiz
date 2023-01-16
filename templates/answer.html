@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="container col-8 my-5">
+            <div class="card">
+                <div class="card-header text-bg-success">
+                    텍스트
+                </div>
+                <div class="card-body">
+                    <div class="card-title text-center">
+                        {{ text.subject }}
+                    </div>
+                    <div class="card-text">
+                        {{ text.content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container col-4 my-5">
+            {% for content in quizList %}
+
+                <div class="card mb-3">
+                    <div class="card-header text-bg-success">
+                        문제
+                    </div>
+                    <div class="card-title text-center my-2">
+                        {{ content.0 }}
+                    </div>
+                    <ul class="list-group list-group-flush" >
+                        <li class="list-group-item text-center">정답 : <button class="btn btn-success">{{ content.1 }}</button></li>
+                        {% if content.2 %}
+                        <li class="list-group-item text-center text-bg-primary"> 정답 </li>
+                        {% else %}
+                        <li class="list-group-item text-center text-bg-danger"> 오답 </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+</div>
+
+{% endblock %}

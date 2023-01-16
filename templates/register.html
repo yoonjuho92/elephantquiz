@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-3">
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username">사용자 이름</label>
+            <input type="text" class="form-control" name="username" id="username"
+                   value="{{ userForm.username.value|default_if_none:'' }}">
+        </div>
+        <div class="mb-3">
+            <label for="password1">비밀번호</label>
+            <input type="password" class="form-control" name="password1" id="password1"
+                   value="{{ userForm.password1.value|default_if_none:'' }}">
+        </div>
+        <div class="mb-3">
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" class="form-control" name="password2" id="password2"
+                   value="{{ userForm.password2.value|default_if_none:'' }}">
+        </div>
+        <div class="mb-3">
+            <label for="difficulty">난이도</label>
+            <select class="form-select" aria-label=".form-select-lg" name="difficulty" id="difficulty">
+            <option value="1,2학년">1,2학년</option>
+            <option value="3,4학년">3,4학년</option>
+            <option value="5,6학년">5,6학년</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">생성하기</button>
+    </form>
+</div>
+
+
+{% endblock %}
